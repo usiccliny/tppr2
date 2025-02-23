@@ -1,0 +1,86 @@
+[
+  {
+    "project_name": "Создание веб-сайта",
+    "project_end_date": "2023-03-15T00:00:00",
+    "task_name": "Дизайн главной страницы",
+    "executor_name": "Иван Иванов, email: ivan.ivanov@example.com",
+    "task_link_project": "Создание веб-сайта status: активен"
+  },
+  {
+    "project_name": "Создание веб-сайта",
+    "project_end_date": "2023-03-15T00:00:00",
+    "task_name": "Дизайн главной страницы",
+    "executor_name": "Иван Иванов, email: ivan.ivanov@example.com",
+    "task_link_project": "Создание веб-сайта status: активен"
+  },
+  {
+    "project_name": "Разработка мобильного приложения",
+    "project_end_date": "2023-05-30T00:00:00",
+    "task_name": "Проверка и исправление ошибок",
+    "executor_name": "Алексей Сидоров, email: aleksey.sidorov@example.com",
+    "task_link_project": "Разработка мобильного приложения status: активен"
+  },
+  {
+    "project_name": "Разработка мобильного приложения",
+    "project_end_date": "2023-05-30T00:00:00",
+    "task_name": "Сборка и тестирование приложения",
+    "executor_name": "Мария Петрова, email: maria.petrov@example.com",
+    "task_link_project": "Разработка мобильного приложения status: активен"
+  },
+  {
+    "project_name": "Разработка мобильного приложения",
+    "project_end_date": "2023-05-30T00:00:00",
+    "task_name": "Проверка и исправление ошибок",
+    "executor_name": "Алексей Сидоров, email: aleksey.sidorov@example.com",
+    "task_link_project": "Разработка мобильного приложения status: активен"
+  },
+  {
+    "project_name": "Разработка мобильного приложения",
+    "project_end_date": "2023-05-30T00:00:00",
+    "task_name": "Сборка и тестирование приложения",
+    "executor_name": "Мария Петрова, email: maria.petrov@example.com",
+    "task_link_project": "Разработка мобильного приложения status: активен"
+  },
+  {
+    "project_name": "Разработка мобильного приложения",
+    "project_end_date": "2023-05-30T00:00:00",
+    "task_name": "Проверка и исправление ошибок",
+    "executor_name": "Алексей Сидоров, email: aleksey.sidorov@example.com",
+    "task_link_project": "Разработка мобильного приложения status: активен"
+  },
+  {
+    "project_name": "Разработка мобильного приложения",
+    "project_end_date": "2023-05-30T00:00:00",
+    "task_name": "Сборка и тестирование приложения",
+    "executor_name": "Мария Петрова, email: maria.petrov@example.com",
+    "task_link_project": "Разработка мобильного приложения status: активен"
+  },
+  {
+    "project_name": "Разработка мобильного приложения",
+    "project_end_date": "2023-05-30T00:00:00",
+    "task_name": "Проверка и исправление ошибок",
+    "executor_name": "Алексей Сидоров, email: aleksey.sidorov@example.com",
+    "task_link_project": "Разработка мобильного приложения status: активен"
+  },
+  {
+    "project_name": "Разработка мобильного приложения",
+    "project_end_date": "2023-05-30T00:00:00",
+    "task_name": "Сборка и тестирование приложения",
+    "executor_name": "Мария Петрова, email: maria.petrov@example.com",
+    "task_link_project": "Разработка мобильного приложения status: активен"
+  },
+  {
+    "project_name": "Обновление корпоративной базы данных",
+    "project_end_date": "2023-04-15T00:00:00",
+    "task_name": "Оптимизация запросов к базе данных",
+    "executor_name": "Анна Николаева, email: anna.nikolaeva@example.com",
+    "task_link_project": "Обновление корпоративной базы данных status: завершен"
+  },
+  {
+    "project_name": "Обновление корпоративной базы данных",
+    "project_end_date": "2023-04-15T00:00:00",
+    "task_name": "Оптимизация запросов к базе данных",
+    "executor_name": "Анна Николаева, email: anna.nikolaeva@example.com",
+    "task_link_project": "Обновление корпоративной базы данных status: завершен"
+  }
+]
