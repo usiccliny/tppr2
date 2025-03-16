@@ -34,3 +34,4 @@ C:\Users\usicc\OneDrive\Рабочий стол\study\tppr2\WinFormsApp1\WinForm
 C:\Users\usicc\OneDrive\Рабочий стол\study\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\usicc\OneDrive\Рабочий стол\study\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\net8.0-windows\Npgsql.dll
 C:\Users\usicc\OneDrive\Рабочий стол\study\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+C:\Users\usicc\OneDrive\Рабочий стол\study\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.sourcelink.json

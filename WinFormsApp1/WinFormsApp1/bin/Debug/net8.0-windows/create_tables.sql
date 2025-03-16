@@ -62,7 +62,7 @@ create table if not exists project_team (
     primary key (project_id, team_id),
     foreign key (project_id) references project(project_id),
     foreign key (team_id) references team(team_id),
-    constraint uk_project_team unique ()
+    constraint uk_project_team unique (project_id, team_id)
 );
 comment on table project_team is 'Связь между проектами и командами';
 comment on column project_team.project_id is 'Идентификатор проекта';

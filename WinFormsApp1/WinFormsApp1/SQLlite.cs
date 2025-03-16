@@ -116,7 +116,7 @@ namespace WinFormsApp1
             using (var sqliteConnection = new SQLiteConnection(connectionString))
             {
                 sqliteConnection.Open();
-                string selectQuery = "SELECT * FROM project"; // Замените на ваш SQL-запрос для извлечения данных
+                string selectQuery = "SELECT * FROM project";
 
                 using (var sqliteCommand = new SQLiteCommand(selectQuery, sqliteConnection))
                 using (var reader = sqliteCommand.ExecuteReader())
