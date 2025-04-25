@@ -47,10 +47,18 @@ namespace WinFormsApp1
         {
             IPHostEntry hostEntry = Dns.GetHostEntry(deviceName);
 
-            string deviceIp = GetIPv4AddressByNetworkName();
+            IPAddress deviceIp = null;
+            foreach (var address in hostEntry.AddressList)
+            {
+                if (address.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    deviceIp = address;
+                    break;
+                }
+            }
             MessageBox.Show($"Используем IP-адрес: {deviceIp}");
 
-            using (TcpClient client = new TcpClient(deviceIp, port))
+            using (TcpClient client = new TcpClient(deviceIp.ToString(), port))
             {
                 MessageBox.Show("Подключение к серверу...");
 
