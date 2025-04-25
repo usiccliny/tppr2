@@ -11,7 +11,7 @@ namespace WinFormsApp1
 {
     internal class PostgreSQL
     {
-        private const string PostgresConnectionString = "Host=localhost;Port=5433;Username=postgres;Password=11299133;Database=postgres";
+        private const string PostgresConnectionString = "Host=localhost;Port=5432;Username=postgres;Password=11299133;Database=postgres";
 
         InteractionWithInterface interaction = new InteractionWithInterface();
 
@@ -96,6 +96,172 @@ namespace WinFormsApp1
             }
 
             MessageBox.Show($"Данные успешно экспортированы в {outputPath}");
+        }
+
+        public void Migrate(Project project)
+        {
+            using (var pgConnection = new NpgsqlConnection(PostgresConnectionString))
+            {
+                pgConnection.Open();
+
+                using (var pgTransaction = pgConnection.BeginTransaction())
+                {
+                    using (var employeeCommand = pgConnection.CreateCommand())
+                    using (var teamCommand = pgConnection.CreateCommand())
+                    using (var projectCommand = pgConnection.CreateCommand())
+                    using (var taskCommand = pgConnection.CreateCommand())
+                    {
+                        // Словари для айдишников
+                        var employeeIds = new Dictionary<string, int>();
+                        var teamIds = new Dictionary<string, int>();
+                        var projectIds = new Dictionary<string, int>();
+
+                        // 1. Вставка или получение айди сотрудника
+                        if (!employeeIds.ContainsKey(project.Email))
+                        {
+                            employeeCommand.CommandText = "INSERT INTO employee (first_name, last_name, email) VALUES (@firstName, @lastName, @Email) ON CONFLICT (email) DO NOTHING RETURNING employee_id";
+                            employeeCommand.Parameters.Clear();
+                            employeeCommand.Parameters.AddWithValue("@firstName", project.FirstName);
+                            employeeCommand.Parameters.AddWithValue("@lastName", project.LastName);
+                            employeeCommand.Parameters.AddWithValue("@Email", project.Email);
+
+                            var result = employeeCommand.ExecuteScalar();
+                            int employeeId;
+                            if (result != null)
+                            {
+                                employeeId = (int)result;
+                            }
+                            else
+                            {
+                                employeeCommand.CommandText = "SELECT employee_id FROM employee WHERE email = @Email";
+                                employeeId = (int)employeeCommand.ExecuteScalar();
+                            }
+                            employeeIds[project.Email] = employeeId;
+                        }
+
+                        int assignedToId = employeeIds[project.Email];
+
+                        // 2. Вставка или получение айди команды
+                        if (!teamIds.ContainsKey(project.TeamName))
+                        {
+                            teamCommand.CommandText = "INSERT INTO team (team_name, lead_employee_id) VALUES (@teamName, @leadEmployeeId) ON CONFLICT (team_name, lead_employee_id) DO NOTHING RETURNING team_id";
+                            teamCommand.Parameters.Clear();
+                            teamCommand.Parameters.AddWithValue("@teamName", project.TeamName);
+                            teamCommand.Parameters.AddWithValue("@leadEmployeeId", assignedToId);
+
+                            var result = teamCommand.ExecuteScalar();
+                            int teamId;
+                            if (result != null)
+                            {
+                                teamId = (int)result;
+                            }
+                            else
+                            {
+                                teamCommand.CommandText = "SELECT team_id FROM team WHERE team_name = @teamName AND lead_employee_id = @leadEmployeeId";
+                                teamId = (int)teamCommand.ExecuteScalar();
+                            }
+                            teamIds[project.TeamName] = teamId;
+                        }
+
+                        int team_id = teamIds[project.TeamName];
+
+                        // 3. Вставка или получение айди проекта
+                        if (!projectIds.ContainsKey(project.ProjectName))
+                        {
+                            projectCommand.CommandText = "INSERT INTO project (project_name, start_date, end_date, status) VALUES (@projectName, @startDate, @endDate, @status) ON CONFLICT (project_name, status) DO NOTHING RETURNING project_id";
+                            projectCommand.Parameters.Clear();
+                            projectCommand.Parameters.AddWithValue("@projectName", project.ProjectName);
+                            projectCommand.Parameters.AddWithValue("@startDate", project.ProjectStartDate);
+                            projectCommand.Parameters.AddWithValue("@endDate", project.ProjectEndDate);
+                            projectCommand.Parameters.AddWithValue("@status", project.ProjectStatus);
+
+
+                            var result = projectCommand.ExecuteScalar();
+                            int projectId;
+                            if (result != null)
+                            {
+                                projectId = (int)result;
+                            }
+                            else
+                            {
+                                projectCommand.CommandText = "SELECT project_id FROM project WHERE project_name = @projectName AND status = @status";
+                                projectId = (int)projectCommand.ExecuteScalar();
+                            }
+                            projectIds[project.ProjectName] = projectId;
+                        }
+
+                        int project_id = projectIds[project.ProjectName];
+
+                        // 4. Вставка задачи
+                        taskCommand.CommandText = "INSERT INTO task (task_name, assigned_to, project_id, status, due_date) VALUES (@taskName, @assignedTo, @projectId, @status, @dueDate) ON CONFLICT (task_name, assigned_to, project_id, status) DO NOTHING";
+                        taskCommand.Parameters.Clear();
+                        taskCommand.Parameters.AddWithValue("@taskName", project.TaskName);
+                        taskCommand.Parameters.AddWithValue("@assignedTo", assignedToId);
+                        taskCommand.Parameters.AddWithValue("@projectId", project_id);
+                        taskCommand.Parameters.AddWithValue("@status", project.TaskStatus);
+                        taskCommand.Parameters.AddWithValue("@dueDate", project.TaskDueDate);
+
+                        taskCommand.ExecuteNonQuery();
+
+                        // связываем проект и команду
+                        using (var projectTeamCommand = pgConnection.CreateCommand())
+                        {
+                            projectTeamCommand.CommandText = "INSERT INTO project_team (project_id, team_id) VALUES (@projectId, @teamId) ON CONFLICT (project_id, team_id) DO NOTHING";
+                            projectTeamCommand.Parameters.Clear();
+                            projectTeamCommand.Parameters.AddWithValue("@projectId", project_id);
+                            projectTeamCommand.Parameters.AddWithValue("@teamId", team_id);
+                            projectTeamCommand.ExecuteNonQuery();
+                        }
+
+                    }
+
+                    pgTransaction.Commit();
+                }
+            }
+        }
+
+        public void TruncateTables()
+        {
+            // Список таблиц для очистки
+            string[] tablesToTruncate = {
+            "public.employee",
+            "public.project",
+            "public.project_team",
+            "public.task",
+            "public.team"
+            };
+
+            try
+            {
+                // Подключение к базе данных
+                using (var connection = new NpgsqlConnection(PostgresConnectionString))
+                {
+                    connection.Open();
+                    Console.WriteLine("Подключение к базе данных успешно.");
+
+                    // Создаем команду для выполнения SQL-запросов
+                    using (var command = new NpgsqlCommand())
+                    {
+                        command.Connection = connection;
+
+                        foreach (var table in tablesToTruncate)
+                        {
+                            // Формируем SQL-запрос для очистки таблицы
+                            string truncateTableQuery = $"TRUNCATE TABLE {table} CASCADE;";
+                            command.CommandText = truncateTableQuery;
+
+                            // Выполняем запрос
+                            command.ExecuteNonQuery();
+                            Console.WriteLine($"Таблица {table} успешно очищена.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Обработка ошибок
+                Console.WriteLine($"Ошибка при очистке таблиц: {ex.Message}");
+            }
         }
     }
 }

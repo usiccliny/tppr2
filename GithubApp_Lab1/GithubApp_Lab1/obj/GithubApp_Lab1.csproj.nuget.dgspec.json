@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\usicc\\OneDrive\\Рабочий стол\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\GithubApp_Lab1.csproj": {}
+    "C:\\Users\\Евгений\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\GithubApp_Lab1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\usicc\\OneDrive\\Рабочий стол\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\GithubApp_Lab1.csproj": {
+    "C:\\Users\\Евгений\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\GithubApp_Lab1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\usicc\\OneDrive\\Рабочий стол\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\GithubApp_Lab1.csproj",
+        "projectUniqueName": "C:\\Users\\Евгений\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\GithubApp_Lab1.csproj",
         "projectName": "GithubApp_Lab1",
-        "projectPath": "C:\\Users\\usicc\\OneDrive\\Рабочий стол\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\GithubApp_Lab1.csproj",
-        "packagesPath": "C:\\Users\\usicc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\usicc\\OneDrive\\Рабочий стол\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\obj\\",
+        "projectPath": "C:\\Users\\Евгений\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\GithubApp_Lab1.csproj",
+        "packagesPath": "C:\\Users\\Евгений\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Евгений\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\usicc\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Евгений\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

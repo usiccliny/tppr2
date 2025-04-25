@@ -1,38 +1,38 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\usicc\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\GithubApp_Lab1\\",
+  "WorkspaceRootPath": "C:\\Users\\\u0415\u0432\u0433\u0435\u043D\u0438\u0439\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|c:\\users\\usicc\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\githubapp_lab1\\githubapp_lab1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|solutionrelative:githubapp_lab1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|c:\\users\\usicc\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\githubapp_lab1\\githubapp_lab1\\oauthmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|solutionrelative:githubapp_lab1\\oauthmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|c:\\users\\usicc\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\githubapp_lab1\\githubapp_lab1\\converter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|solutionrelative:githubapp_lab1\\converter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|c:\\users\\usicc\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\githubapp_lab1\\githubapp_lab1\\requestmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|c:\\users\\\u0435\u0432\u0433\u0435\u043D\u0438\u0439\\desktop\\stud\\tppr2\\githubapp_lab1\\githubapp_lab1\\requestmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|solutionrelative:githubapp_lab1\\requestmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|c:\\users\\usicc\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\githubapp_lab1\\githubapp_lab1\\model\\userinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|c:\\users\\\u0435\u0432\u0433\u0435\u043D\u0438\u0439\\desktop\\stud\\tppr2\\githubapp_lab1\\githubapp_lab1\\httpserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|solutionrelative:githubapp_lab1\\httpserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|c:\\users\\\u0435\u0432\u0433\u0435\u043D\u0438\u0439\\desktop\\stud\\tppr2\\githubapp_lab1\\githubapp_lab1\\oauthmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|solutionrelative:githubapp_lab1\\oauthmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|c:\\users\\\u0435\u0432\u0433\u0435\u043D\u0438\u0439\\desktop\\stud\\tppr2\\githubapp_lab1\\githubapp_lab1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|solutionrelative:githubapp_lab1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|c:\\users\\\u0435\u0432\u0433\u0435\u043D\u0438\u0439\\desktop\\stud\\tppr2\\githubapp_lab1\\githubapp_lab1\\converter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|solutionrelative:githubapp_lab1\\converter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|c:\\users\\\u0435\u0432\u0433\u0435\u043D\u0438\u0439\\desktop\\stud\\tppr2\\githubapp_lab1\\githubapp_lab1\\model\\userinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|solutionrelative:githubapp_lab1\\model\\userinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|c:\\users\\usicc\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\githubapp_lab1\\githubapp_lab1\\model\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|c:\\users\\\u0435\u0432\u0433\u0435\u043D\u0438\u0439\\desktop\\stud\\tppr2\\githubapp_lab1\\githubapp_lab1\\model\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|solutionrelative:githubapp_lab1\\model\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|C:\\Users\\usicc\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\GithubApp_Lab1\\githubapp_lab1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|C:\\Users\\\u0415\u0432\u0433\u0435\u043D\u0438\u0439\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\githubapp_lab1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|solutionrelative:githubapp_lab1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|c:\\users\\usicc\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\githubapp_lab1\\githubapp_lab1\\httpserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{64499C71-AAF1-4C7F-A3A6-0962DC276D55}|GithubApp_Lab1\\GithubApp_Lab1.csproj|solutionrelative:githubapp_lab1\\httpserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 112,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,106 +58,103 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "UserInfo.cs",
-              "DocumentMoniker": "C:\\Users\\usicc\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\model\\UserInfo.cs",
+              "DocumentMoniker": "C:\\Users\\\u0415\u0432\u0433\u0435\u043D\u0438\u0439\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\model\\UserInfo.cs",
               "RelativeDocumentMoniker": "GithubApp_Lab1\\model\\UserInfo.cs",
-              "ToolTip": "C:\\Users\\usicc\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\model\\UserInfo.cs",
+              "ToolTip": "C:\\Users\\\u0415\u0432\u0433\u0435\u043D\u0438\u0439\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\model\\UserInfo.cs",
               "RelativeToolTip": "GithubApp_Lab1\\model\\UserInfo.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T17:39:01.177Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-15T17:39:01.177Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Repository.cs",
-              "DocumentMoniker": "C:\\Users\\usicc\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\model\\Repository.cs",
+              "DocumentMoniker": "C:\\Users\\\u0415\u0432\u0433\u0435\u043D\u0438\u0439\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\model\\Repository.cs",
               "RelativeDocumentMoniker": "GithubApp_Lab1\\model\\Repository.cs",
-              "ToolTip": "C:\\Users\\usicc\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\model\\Repository.cs",
+              "ToolTip": "C:\\Users\\\u0415\u0432\u0433\u0435\u043D\u0438\u0439\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\model\\Repository.cs",
               "RelativeToolTip": "GithubApp_Lab1\\model\\Repository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T17:34:08.479Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-15T17:34:08.479Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "RequestManager.cs",
-              "DocumentMoniker": "C:\\Users\\usicc\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\RequestManager.cs",
+              "DocumentMoniker": "C:\\Users\\\u0415\u0432\u0433\u0435\u043D\u0438\u0439\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\RequestManager.cs",
               "RelativeDocumentMoniker": "GithubApp_Lab1\\RequestManager.cs",
-              "ToolTip": "C:\\Users\\usicc\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\RequestManager.cs",
+              "ToolTip": "C:\\Users\\\u0415\u0432\u0433\u0435\u043D\u0438\u0439\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\RequestManager.cs",
               "RelativeToolTip": "GithubApp_Lab1\\RequestManager.cs",
-              "ViewState": "AQIAADAAAAAAAAAAAAAAAE0AAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGAAAABGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-15T17:33:21.721Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Converter.cs",
-              "DocumentMoniker": "C:\\Users\\usicc\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\Converter.cs",
+              "DocumentMoniker": "C:\\Users\\\u0415\u0432\u0433\u0435\u043D\u0438\u0439\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\Converter.cs",
               "RelativeDocumentMoniker": "GithubApp_Lab1\\Converter.cs",
-              "ToolTip": "C:\\Users\\usicc\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\Converter.cs",
+              "ToolTip": "C:\\Users\\\u0415\u0432\u0433\u0435\u043D\u0438\u0439\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\Converter.cs",
               "RelativeToolTip": "GithubApp_Lab1\\Converter.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAgwBsAAABAAAAA",
+              "ViewState": "AQIAABYAAAAAAAAAAAAgwBsAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-15T15:57:47.329Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "OAuthManager.cs",
-              "DocumentMoniker": "C:\\Users\\usicc\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\OAuthManager.cs",
+              "DocumentMoniker": "C:\\Users\\\u0415\u0432\u0433\u0435\u043D\u0438\u0439\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\OAuthManager.cs",
               "RelativeDocumentMoniker": "GithubApp_Lab1\\OAuthManager.cs",
-              "ToolTip": "C:\\Users\\usicc\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\OAuthManager.cs",
+              "ToolTip": "C:\\Users\\\u0415\u0432\u0433\u0435\u043D\u0438\u0439\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\OAuthManager.cs",
               "RelativeToolTip": "GithubApp_Lab1\\OAuthManager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADYAAAAAAAAA",
+              "ViewState": "AQIAAC8AAAAAAAAAAAAwwE4AAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-13T15:50:25.182Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\usicc\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\\u0415\u0432\u0433\u0435\u043D\u0438\u0439\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\Form1.cs",
               "RelativeDocumentMoniker": "GithubApp_Lab1\\Form1.cs",
-              "ToolTip": "C:\\Users\\usicc\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\Form1.cs",
+              "ToolTip": "C:\\Users\\\u0415\u0432\u0433\u0435\u043D\u0438\u0439\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\Form1.cs",
               "RelativeToolTip": "GithubApp_Lab1\\Form1.cs",
-              "ViewState": "AQIAAHIAAAAAAAAAAAAmwCkAAAApAAAA",
+              "ViewState": "AQIAACsAAAAAAAAAAAAgwC4AAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-11T16:19:37.499Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
               "Title": "HttpServer.cs",
-              "DocumentMoniker": "C:\\Users\\usicc\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\HttpServer.cs",
+              "DocumentMoniker": "C:\\Users\\\u0415\u0432\u0433\u0435\u043D\u0438\u0439\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\HttpServer.cs",
               "RelativeDocumentMoniker": "GithubApp_Lab1\\HttpServer.cs",
-              "ToolTip": "C:\\Users\\usicc\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\HttpServer.cs",
+              "ToolTip": "C:\\Users\\\u0415\u0432\u0433\u0435\u043D\u0438\u0439\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\HttpServer.cs",
               "RelativeToolTip": "GithubApp_Lab1\\HttpServer.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAgwBsAAABEAAAA",
+              "ViewState": "AQIAABAAAAAAAAAAAAAgwBwAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-11T16:42:28.648Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435]",
-              "DocumentMoniker": "C:\\Users\\usicc\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\\u0415\u0432\u0433\u0435\u043D\u0438\u0439\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\Form1.cs",
               "RelativeDocumentMoniker": "GithubApp_Lab1\\Form1.cs",
               "ToolTip": "C:\\Users\\usicc\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435]",
-              "RelativeToolTip": "GithubApp_Lab1\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435]",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\usicc\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T16:13:33.968Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435]"
+              "WhenOpened": "2025-03-11T16:13:33.968Z"
             }
           ]
         },
@@ -168,14 +165,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:2:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:3:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             }
           ]
         }

@@ -9,12 +9,15 @@
       {
         "name": "Microsoft.WindowsDesktop.App",
         "version": "8.0.0"
+      },
+      {
+        "name": "Microsoft.AspNetCore.App",
+        "version": "8.0.0"
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\usicc\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\usicc\\.nuget\\packages",
-      "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      "C:\\Users\\Евгений\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Евгений\\.nuget\\packages"
     ],
     "configProperties": {
       "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": true,

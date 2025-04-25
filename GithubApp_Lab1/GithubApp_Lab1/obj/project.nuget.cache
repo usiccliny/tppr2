@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "jj3xUK2vHtL5iHTIrAq9rii7ZxEWM1cxdTTGGRaL3c2A45PiiNbta0R6AbERQRT0jJK9AUI2Nxvm0TIS7pW9sg==",
+  "dgSpecHash": "v1GUI48OeSAvQOnhA6hsPoPCa+vMihqvOAAGtSqlXw2TmhlRRhIchN0rA6xDTnQpvTcLqLaMh4+c4mDrMjSfkA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\usicc\\OneDrive\\Рабочий стол\\study\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\GithubApp_Lab1.csproj",
+  "projectFilePath": "C:\\Users\\Евгений\\Desktop\\stud\\tppr2\\GithubApp_Lab1\\GithubApp_Lab1\\GithubApp_Lab1.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\usicc\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
-    "C:\\Users\\usicc\\.nuget\\packages\\restsharp\\112.1.0\\restsharp.112.1.0.nupkg.sha512"
+    "C:\\Users\\Евгений\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\Евгений\\.nuget\\packages\\restsharp\\112.1.0\\restsharp.112.1.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -1,5 +1,4 @@
 ﻿using Npgsql;
-using WinFormsApp1.Model;
 using System.Data.SQLite;
 using Newtonsoft.Json;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
@@ -9,7 +8,7 @@ namespace WinFormsApp1
     internal class SQLlite
     {
         readonly string connectionString = "Data Source=mydatabase.db;Version=3;";
-        private const string PostgresConnectionString = "Host=localhost;Port=5433;Username=postgres;Password=11299133;Database=postgres";
+        private const string PostgresConnectionString = "Host=localhost;Port=5432;Username=postgres;Password=11299133;Database=postgres";
 
         public void CreateTable()
         {
@@ -42,77 +41,10 @@ namespace WinFormsApp1
             }
         }
 
-        public void InsertData(string json)
+        public List<Project> ReadDataFromSQLite()
         {
-            if (!File.Exists(json))
-            {
-                MessageBox.Show("Файл JSON не найден.");
-                return;
-            }
+            var projects = new List<Project>();
 
-            string jsonContent = File.ReadAllText(json);
-            if (string.IsNullOrWhiteSpace(jsonContent))
-            {
-                MessageBox.Show("Файл JSON пуст.");
-                return;
-            }
-
-            List<Project> records;
-            try
-            {
-                records = JsonConvert.DeserializeObject<List<Project>>(jsonContent);
-            }
-            catch (JsonReaderException ex)
-            {
-                MessageBox.Show($"Ошибка десериализации JSON: {ex.Message}");
-                return;
-            }
-
-
-            using (var sqliteConnection = new SQLiteConnection(connectionString))
-            {
-                sqliteConnection.Open();
-
-                foreach (var record in records)
-                {
-                    string insertQuery = @"
-                        INSERT INTO project (
-                            first_name, last_name, email, project_name, project_start_date, 
-                            project_end_date, project_status, task_name, executor_name, 
-                            task_link_project, task_status, task_due_date, team_name, team_leader
-                        ) VALUES (
-                            @first_name, @last_name, @email, @project_name, @project_start_date, 
-                            @project_end_date, @project_status, @task_name, @executor_name, 
-                            @task_link_project, @task_status, @task_due_date, @team_name, @team_leader
-                        )";
-
-                    using (var insertCommand = new SQLiteCommand(insertQuery, sqliteConnection))
-                    {
-                        // Заполнение параметров
-                        insertCommand.Parameters.AddWithValue("@first_name", record.first_name);
-                        insertCommand.Parameters.AddWithValue("@last_name", record.last_name);
-                        insertCommand.Parameters.AddWithValue("@email", record.email);
-                        insertCommand.Parameters.AddWithValue("@project_name", record.project_name);
-                        insertCommand.Parameters.AddWithValue("@project_start_date", record.project_start_date);
-                        insertCommand.Parameters.AddWithValue("@project_end_date", record.project_end_date);
-                        insertCommand.Parameters.AddWithValue("@project_status", record.project_status);
-                        insertCommand.Parameters.AddWithValue("@task_name", record.task_name);
-                        insertCommand.Parameters.AddWithValue("@executor_name", record.executor_name);
-                        insertCommand.Parameters.AddWithValue("@task_link_project", record.task_link_project);
-                        insertCommand.Parameters.AddWithValue("@task_status", record.task_status);
-                        insertCommand.Parameters.AddWithValue("@task_due_date", record.task_due_date);
-                        insertCommand.Parameters.AddWithValue("@team_name", record.team_name);
-                        insertCommand.Parameters.AddWithValue("@team_leader", record.team_leader);
-
-                        // Выполнение запроса
-                        insertCommand.ExecuteNonQuery();
-                    }
-                }
-            }
-        }
-
-        public void TransferData()
-        {
             using (var sqliteConnection = new SQLiteConnection(connectionString))
             {
                 sqliteConnection.Open();
@@ -121,157 +53,146 @@ namespace WinFormsApp1
                 using (var sqliteCommand = new SQLiteCommand(selectQuery, sqliteConnection))
                 using (var reader = sqliteCommand.ExecuteReader())
                 {
-                    var employeeIds = new Dictionary<string, int>();
-                    var projectIds = new Dictionary<string, int>();
-                    var teamIds = new Dictionary<string, int>();
-
-                    var employeesToInsert = new List<(string FirstName, string LastName, string Email)>();
-                    var projectsToInsert = new List<(string ProjectName, DateTime StartDate, DateTime EndDate, string Status)>();
-                    var tasksToInsert = new List<(string TaskName, string AssignedToEmail, string ProjectName, string Status, DateTime DueDate)>();
-                    var teamsToInsert = new List<(string TeamName, string TeamLeaderEmail)>();
-
-                    // Считываем данные из SQLite
                     while (reader.Read())
                     {
-                        string firstName = reader["first_name"]?.ToString();
-                        string lastName = reader["last_name"]?.ToString();
-                        string email = reader["email"]?.ToString();
-                        string projectName = reader["project_name"]?.ToString();
-                        DateTime projectStartDate = DateTime.Parse(reader["project_start_date"]?.ToString());
-                        DateTime projectEndDate = DateTime.Parse(reader["project_end_date"]?.ToString());
-                        string projectStatus = reader["project_status"]?.ToString();
-                        string taskName = reader["task_name"]?.ToString();
-                        string taskStatus = reader["task_status"]?.ToString();
-                        DateTime taskDueDate = DateTime.Parse(reader["task_due_date"]?.ToString());
-                        string teamName = reader["team_name"]?.ToString();
-                        string teamLeader = reader["team_leader"]?.ToString();
-                        string teamLeaderEmail = teamLeader.Split(new[] { ", email: " }, StringSplitOptions.None)[1].Trim();
+                        var project = new Project
+                        {
+                            FirstName = reader["first_name"]?.ToString(),
+                            LastName = reader["last_name"]?.ToString(),
+                            Email = reader["email"]?.ToString(),
+                            ProjectName = reader["project_name"]?.ToString(),
+                            ProjectStartDate = DateTime.Parse(reader["project_start_date"]?.ToString()),
+                            ProjectEndDate = DateTime.Parse(reader["project_end_date"]?.ToString()),
+                            ProjectStatus = reader["project_status"]?.ToString(),
+                            TaskName = reader["task_name"]?.ToString(),
+                            ExecutorName = reader["executor_name"]?.ToString(),
+                            TaskStatus = reader["task_status"]?.ToString(),
+                            TaskDueDate = DateTime.Parse(reader["task_due_date"]?.ToString()),
+                            TeamName = reader["team_name"]?.ToString()
+                        };
 
-                        employeesToInsert.Add((firstName, lastName, email));
-                        projectsToInsert.Add((projectName, projectStartDate, projectEndDate, projectStatus));
-                        tasksToInsert.Add((taskName, email, projectName, taskStatus, taskDueDate));
-                        teamsToInsert.Add((teamName, teamLeaderEmail));
+                        projects.Add(project);
+                    }
+                }
+            }
+
+            return projects;
+        }
+
+        public void SaveDataToPostgreSQL(Project project)
+        {
+            using (var postgresConnection = new NpgsqlConnection(PostgresConnectionString))
+            {
+                postgresConnection.Open();
+
+                var employeeIds = new Dictionary<string, int>();
+                var projectIds = new Dictionary<string, int>();
+                var teamIds = new Dictionary<string, int>();
+
+                // Вставка сотрудников
+                if (!employeeIds.ContainsKey(project.Email))
+                {
+                    using (var employeeCommand = new NpgsqlCommand(@"
+                INSERT INTO employee (first_name, last_name, email) 
+                VALUES (@first_name, @last_name, @email) 
+                ON CONFLICT (email) DO NOTHING RETURNING employee_id", postgresConnection))
+                    {
+                        employeeCommand.Parameters.AddWithValue("@first_name", project.FirstName);
+                        employeeCommand.Parameters.AddWithValue("@last_name", project.LastName);
+                        employeeCommand.Parameters.AddWithValue("@email", project.Email);
+
+                        var employeeId = employeeCommand.ExecuteScalar();
+                        if (employeeId != null)
+                        {
+                            employeeIds[project.Email] = (int)employeeId;
+                        }
+                    }
+                }
+
+                // Вставка проектов
+                if (!projectIds.ContainsKey(project.ProjectName))
+                {
+                    using (var projectCommand = new NpgsqlCommand(@"
+                INSERT INTO project (project_name, start_date, end_date, status) 
+                VALUES (@project_name, @start_date, @end_date, @status) 
+                ON CONFLICT (project_name, status) DO NOTHING RETURNING project_id", postgresConnection))
+                    {
+                        projectCommand.Parameters.AddWithValue("@project_name", project.ProjectName);
+                        projectCommand.Parameters.AddWithValue("@start_date", project.ProjectStartDate);
+                        projectCommand.Parameters.AddWithValue("@end_date", project.ProjectEndDate);
+                        projectCommand.Parameters.AddWithValue("@status", project.ProjectStatus);
+
+                        var projectid = projectCommand.ExecuteScalar();
+                        if (projectid != null)
+                        {
+                            projectIds[project.ProjectName] = (int)projectid;
+                        }
+                    }
+                }
+
+                // Вставка задач
+                int assignedToId = employeeIds.TryGetValue(project.Email, out int empId) ? empId : -1;
+
+                if (!projectIds.TryGetValue(project.ProjectName, out int projectId))
+                {
+                    Console.WriteLine($"Проект \"{project.ProjectName}\" не найден. Пропускаем задачу: \"{project.TaskName}\"");
+                    return;
+                }
+
+                using (var taskCommand = new NpgsqlCommand(@"
+            INSERT INTO task (task_name, assigned_to, project_id, status, due_date) 
+            VALUES (@task_name, @assigned_to, @project_id, @status, @due_date)
+            ON CONFLICT (task_name, assigned_to, project_id, status) DO NOTHING", postgresConnection))
+                {
+                    taskCommand.Parameters.AddWithValue("@task_name", project.TaskName);
+                    taskCommand.Parameters.AddWithValue("@assigned_to", assignedToId);
+                    taskCommand.Parameters.AddWithValue("@project_id", projectId);
+                    taskCommand.Parameters.AddWithValue("@status", project.TaskStatus);
+                    taskCommand.Parameters.AddWithValue("@due_date", project.TaskDueDate);
+                    taskCommand.ExecuteNonQuery();
+                }
+
+                // Вставка команд
+                string teamLeaderEmail = project.Email; // Предполагаем, что лидер команды - это тот же сотрудник
+                if (!teamIds.ContainsKey(project.TeamName) && !string.IsNullOrEmpty(teamLeaderEmail))
+                {
+                    if (!employeeIds.TryGetValue(teamLeaderEmail, out int leadId))
+                    {
+                        return;
                     }
 
-                    using (var postgresConnection = new NpgsqlConnection(PostgresConnectionString))
+                    using (var teamCommand = new NpgsqlCommand(@"
+                INSERT INTO team (team_name, lead_employee_id) 
+                VALUES (@team_name, @lead_employee_id) 
+                ON CONFLICT (team_name, lead_employee_id) DO NOTHING RETURNING team_id", postgresConnection))
                     {
-                        postgresConnection.Open();
+                        teamCommand.Parameters.AddWithValue("@team_name", project.TeamName);
+                        teamCommand.Parameters.AddWithValue("@lead_employee_id", leadId);
 
-                        // 1. Вставка сотрудников
-                        foreach (var (FirstName, LastName, Email) in employeesToInsert)
+                        var teamId = teamCommand.ExecuteScalar();
+                        if (teamId != null)
                         {
-                            using (var employeeCommand = new NpgsqlCommand(@"
-                    INSERT INTO employee (first_name, last_name, email) 
-                    VALUES (@first_name, @last_name, @email) 
-                    ON CONFLICT (email) DO NOTHING RETURNING employee_id", postgresConnection))
-                            {
-                                employeeCommand.Parameters.AddWithValue("@first_name", FirstName);
-                                employeeCommand.Parameters.AddWithValue("@last_name", LastName);
-                                employeeCommand.Parameters.AddWithValue("@email", Email);
-
-                                var employeeId = employeeCommand.ExecuteScalar();
-                                if (employeeId != null)
-                                {
-                                    employeeIds[Email] = (int)employeeId;
-                                }
-                            }
+                            teamIds[project.TeamName] = (int)teamId;
                         }
+                    }
+                }
 
-                        // 2. Вставка проектов
-                        foreach (var (ProjectName, StartDate, EndDate, Status) in projectsToInsert)
-                        {
-                            using (var projectCommand = new NpgsqlCommand(@"
-                    INSERT INTO project (project_name, start_date, end_date, status) 
-                    VALUES (@project_name, @start_date, @end_date, @status) 
-                    ON CONFLICT (project_name, status) DO NOTHING RETURNING project_id", postgresConnection))
-                            {
-                                projectCommand.Parameters.AddWithValue("@project_name", ProjectName);
-                                projectCommand.Parameters.AddWithValue("@start_date", StartDate);
-                                projectCommand.Parameters.AddWithValue("@end_date", EndDate);
-                                projectCommand.Parameters.AddWithValue("@status", Status);
-
-                                var projectId = projectCommand.ExecuteScalar();
-                                if (projectId != null)
-                                {
-                                    projectIds[ProjectName] = (int)projectId;
-                                }
-                            }
-                        }
-
-                        // 3. Вставка задач
-                        foreach (var (TaskName, AssignedToEmail, ProjectName, Status, DueDate) in tasksToInsert)
-                        {
-                            int assignedToId = employeeIds.TryGetValue(AssignedToEmail, out int empId) ? empId : -1;
-
-                            // Проверка, существует ли проект
-                            if (!projectIds.TryGetValue(ProjectName, out int projectId))
-                            {
-                                Console.WriteLine($"Проект \"{ProjectName}\" не найден. Пропускаем задачу: \"{TaskName}\"");
-                                continue; // Пропускаем задачу, если проект не существует
-                            }
-
-                            using (var taskCommand = new NpgsqlCommand(@"
-    INSERT INTO task (task_name, assigned_to, project_id, status, due_date) 
-    VALUES (@task_name, @assigned_to, @project_id, @status, @due_date)
-    ON CONFLICT (task_name, assigned_to, project_id, status) DO NOTHING", postgresConnection))
-                            {
-                                taskCommand.Parameters.AddWithValue("@task_name", TaskName);
-                                taskCommand.Parameters.AddWithValue("@assigned_to", assignedToId);
-                                taskCommand.Parameters.AddWithValue("@project_id", projectId);
-                                taskCommand.Parameters.AddWithValue("@status", Status);
-                                taskCommand.Parameters.AddWithValue("@due_date", DueDate);
-                                taskCommand.ExecuteNonQuery();
-                            }
-                        }
-
-                        // 4. Вставка команд
-                        foreach (var (TeamName, LeaderEmail) in teamsToInsert)
-                        {
-                            // Проверяем, существует ли лидер в employee
-                            if (!employeeIds.TryGetValue(LeaderEmail, out int leadId))
-                            {
-                                // Если лидера нет, можем либо пропустить добавление команды,
-                                // либо добавить специальное значение (например, NULL) или выдать предупреждение.
-                                Console.WriteLine($"Лидер команды {TeamName} не найден в базе сотрудников: {LeaderEmail}");
-                                continue;
-                            }
-
-                            using (var teamCommand = new NpgsqlCommand(@"
-                    INSERT INTO team (team_name, lead_employee_id) 
-                    VALUES (@team_name, @lead_employee_id) 
-                    ON CONFLICT (team_name, lead_employee_id) DO NOTHING RETURNING team_id", postgresConnection))
-                            {
-                                teamCommand.Parameters.AddWithValue("@team_name", TeamName);
-                                teamCommand.Parameters.AddWithValue("@lead_employee_id", leadId);
-
-                                var teamId = teamCommand.ExecuteScalar();
-                                if (teamId != null)
-                                {
-                                    teamIds[TeamName] = (int)teamId;
-                                }
-                            }
-                        }
-
-                        // 5. Вставка в таблицу project_team
-                        foreach (var projectEntry in projectIds)
-                        {
-                            foreach (var teamEntry in teamIds)
-                            {
-                                using (var projectTeamCommand = new NpgsqlCommand(@"
-                        INSERT INTO project_team (project_id, team_id) 
-                        VALUES (@project_id, @team_id) 
-                        ON CONFLICT (project_id, team_id) DO NOTHING", postgresConnection))
-                                {
-                                    projectTeamCommand.Parameters.AddWithValue("@project_id", projectEntry.Value);
-                                    projectTeamCommand.Parameters.AddWithValue("@team_id", teamEntry.Value);
-                                    projectTeamCommand.ExecuteNonQuery();
-                                }
-                            }
-                        }
+                // Вставка связей между проектами и командами
+                if (projectIds.ContainsKey(project.ProjectName) && teamIds.ContainsKey(project.TeamName))
+                {
+                    using (var projectTeamCommand = new NpgsqlCommand(@"
+                INSERT INTO project_team (project_id, team_id) 
+                VALUES (@project_id, @team_id) 
+                ON CONFLICT (project_id, team_id) DO NOTHING", postgresConnection))
+                    {
+                        projectTeamCommand.Parameters.AddWithValue("@project_id", projectIds[project.ProjectName]);
+                        projectTeamCommand.Parameters.AddWithValue("@team_id", teamIds[project.TeamName]);
+                        projectTeamCommand.ExecuteNonQuery();
                     }
                 }
             }
         }
+        
 
     }
 }

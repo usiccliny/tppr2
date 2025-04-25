@@ -1,0 +1,2 @@
+obj\Debug\net8.0-windows\Protos/SendedData.cs \
+obj\Debug\net8.0-windows\Protos/SendedDataGrpc.cs: Protos/sended_data.proto

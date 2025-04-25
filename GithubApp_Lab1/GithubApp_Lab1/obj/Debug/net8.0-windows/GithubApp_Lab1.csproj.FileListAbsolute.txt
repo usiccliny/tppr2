@@ -19,3 +19,24 @@ C:\Users\usicc\OneDrive\Рабочий стол\study\tppr2\GithubApp_Lab1\Githu
 C:\Users\usicc\OneDrive\Рабочий стол\study\tppr2\GithubApp_Lab1\GithubApp_Lab1\obj\Debug\net8.0-windows\GithubApp_Lab1.pdb
 C:\Users\usicc\OneDrive\Рабочий стол\study\tppr2\GithubApp_Lab1\GithubApp_Lab1\obj\Debug\net8.0-windows\GithubApp_Lab1.genruntimeconfig.cache
 C:\Users\usicc\OneDrive\Рабочий стол\study\tppr2\GithubApp_Lab1\GithubApp_Lab1\obj\Debug\net8.0-windows\ref\GithubApp_Lab1.dll
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\bin\Debug\net8.0-windows\GithubApp_Lab1.exe
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\bin\Debug\net8.0-windows\GithubApp_Lab1.deps.json
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\bin\Debug\net8.0-windows\GithubApp_Lab1.runtimeconfig.json
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\bin\Debug\net8.0-windows\GithubApp_Lab1.dll
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\bin\Debug\net8.0-windows\GithubApp_Lab1.pdb
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\bin\Debug\net8.0-windows\RestSharp.dll
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\obj\Debug\net8.0-windows\GithubApp_Lab1.csproj.AssemblyReference.cache
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\obj\Debug\net8.0-windows\GithubApp_Lab1.Form1.resources
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\obj\Debug\net8.0-windows\GithubApp_Lab1.csproj.GenerateResource.cache
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\obj\Debug\net8.0-windows\GithubApp_Lab1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\obj\Debug\net8.0-windows\GithubApp_Lab1.AssemblyInfoInputs.cache
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\obj\Debug\net8.0-windows\GithubApp_Lab1.AssemblyInfo.cs
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\obj\Debug\net8.0-windows\GithubApp_Lab1.csproj.CoreCompileInputs.cache
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\obj\Debug\net8.0-windows\GithubApp_Lab1.sourcelink.json
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\obj\Debug\net8.0-windows\GithubAp.F8408183.Up2Date
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\obj\Debug\net8.0-windows\GithubApp_Lab1.dll
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\obj\Debug\net8.0-windows\refint\GithubApp_Lab1.dll
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\obj\Debug\net8.0-windows\GithubApp_Lab1.pdb
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\obj\Debug\net8.0-windows\GithubApp_Lab1.genruntimeconfig.cache
+C:\Users\Евгений\Desktop\stud\tppr2\GithubApp_Lab1\GithubApp_Lab1\obj\Debug\net8.0-windows\ref\GithubApp_Lab1.dll
