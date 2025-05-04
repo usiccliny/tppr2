@@ -35,6 +35,8 @@
             button2 = new Button();
             button3 = new Button();
             button4 = new Button();
+            button5 = new Button();
+            button6 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -95,7 +97,7 @@
             button3.Name = "button3";
             button3.Size = new Size(151, 85);
             button3.TabIndex = 5;
-            button3.Text = "button3";
+            button3.Text = "сервер grpc";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -108,6 +110,26 @@
             button4.Text = "Отправка данных через сокеты";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(589, 506);
+            button5.Name = "btn5";
+            button5.Size = new Size(124, 85);
+            button5.TabIndex = 2;
+            button5.Text = "Отправка данных через брокер сообщений";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
+            // button6
+            // 
+            button6.Location = new Point(789, 506);
+            button6.Name = "btn6";
+            button6.Size = new Size(124, 85);
+            button6.TabIndex = 2;
+            button6 .Text = "Отправка данных через удаленный вызов процедур";
+            button6 .UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
             // 
             // Form1
             // 

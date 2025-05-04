@@ -64,18 +64,6 @@ namespace WinFormsApp1.Protos {
       get { return global::WinFormsApp1.Protos.SendedDataReflection.Descriptor.Services[0]; }
     }
 
-    /// <summary>Base class for server-side implementations of ProjectService</summary>
-    [grpc::BindServiceMethod(typeof(ProjectService), "BindService")]
-    public abstract partial class ProjectServiceBase
-    {
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::System.Threading.Tasks.Task<global::WinFormsApp1.Protos.ProjectResponse> CreateProject(grpc::IAsyncStreamReader<global::WinFormsApp1.Protos.ProjectRequest> requestStream, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
-
-    }
-
     /// <summary>Client for ProjectService</summary>
     public partial class ProjectServiceClient : grpc::ClientBase<ProjectServiceClient>
     {
@@ -119,25 +107,6 @@ namespace WinFormsApp1.Protos {
       {
         return new ProjectServiceClient(configuration);
       }
-    }
-
-    /// <summary>Creates service definition that can be registered with a server</summary>
-    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public static grpc::ServerServiceDefinition BindService(ProjectServiceBase serviceImpl)
-    {
-      return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_CreateProject, serviceImpl.CreateProject).Build();
-    }
-
-    /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
-    /// Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
-    /// <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
-    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public static void BindService(grpc::ServiceBinderBase serviceBinder, ProjectServiceBase serviceImpl)
-    {
-      serviceBinder.AddMethod(__Method_CreateProject, serviceImpl == null ? null : new grpc::ClientStreamingServerMethod<global::WinFormsApp1.Protos.ProjectRequest, global::WinFormsApp1.Protos.ProjectResponse>(serviceImpl.CreateProject));
     }
 
   }

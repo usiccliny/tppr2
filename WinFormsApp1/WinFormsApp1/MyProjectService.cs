@@ -1,44 +1,46 @@
 ﻿using Grpc.Core;
+using Protos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WinFormsApp1.Protos;
 
 namespace WinFormsApp1
 {
-    public class MyProjectService : ProjectService.ProjectServiceBase
+    public class MyLibraryService : LibraryService.LibraryServiceBase
     {
-        public override async Task<ProjectResponse> CreateProject(IAsyncStreamReader<ProjectRequest> requestStream, ServerCallContext context)
+        public override async Task<LibraryResponse> CreateLibrary(IAsyncStreamReader<LibraryRequest> requestStream, ServerCallContext context)
         {
-            var receivedProjects = new List<ProjectRequest>();
+            var receivedLibraries = new List<LibraryRequest>();
 
             try
             {
                 PostgreSQL postgre = new PostgreSQL();
                 while (await requestStream.MoveNext())
                 {
-                    var project = requestStream.Current;
-                    receivedProjects.Add(project);
+                    var library = requestStream.Current;
+                    receivedLibraries.Add(library);
 
-                    var saveproject = new Project(project);
-                    postgre.Migrate(saveproject);
+                    var saveLibrary = new Library(library);
+                    //postgre.Migrate(saveLibrary);
+                    postgre.TransferData(saveLibrary);
 
-                    MessageBox.Show($"Received project: {project.ProjectName}");
+                    MessageBox.Show($"Received project: {library.AuthorName}");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error while processing projects: {ex.Message}");
-                return new ProjectResponse
+                return new LibraryResponse
                 {
                     Message = "An error occurred while processing projects."
                 };
             }
 
-            MessageBox.Show($"Total projects received: {receivedProjects.Count}");
+            MessageBox.Show($"Total projects received: {receivedLibraries.Count}");
 
-            return new ProjectResponse
+            return new LibraryResponse
             {
-                Message = $"Successfully processed {receivedProjects.Count} projects."
+                Message = $"Successfully processed {receivedLibraries.Count} projects."
             };
         }
     }

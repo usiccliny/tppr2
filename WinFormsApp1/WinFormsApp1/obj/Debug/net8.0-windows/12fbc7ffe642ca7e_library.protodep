@@ -1,0 +1,2 @@
+obj\Debug\net8.0-windows\Protos/Library.cs \
+obj\Debug\net8.0-windows\Protos/LibraryGrpc.cs: Protos/library.proto

@@ -147,14 +147,14 @@ namespace WinFormsApp1
                         {
                             var body = result.Body.ToArray();
                             var json = Encoding.UTF8.GetString(body);
-                            Project project = JsonConvert.DeserializeObject<Project>(json);
+                            Library library = JsonConvert.DeserializeObject<Library>(json);
 
                             PostgreSQL postgre = new PostgreSQL();
-                            postgre.Migrate(project);
+                            postgre.TransferData(library);
 
                             channel.BasicAck(deliveryTag: result.DeliveryTag, multiple: false);
 
-                            MessageBox.Show($"Получен проект: {project.ProjectName}");
+                            MessageBox.Show($"Получено: {library.AuthorName}");
                         }
                         catch (JsonException ex)
                         {
@@ -172,7 +172,7 @@ namespace WinFormsApp1
             MessageBox.Show("Данные успешно получены!");
         }
 
-        private void button1_Click(object sender, EventArgs e)//сокеты
+        private void button1_Click(object sender, EventArgs e) // сокеты
         {
             TcpListener server = null;
             try
@@ -194,38 +194,54 @@ namespace WinFormsApp1
 
                         sslStream.AuthenticateAsServer(serverCertificate, clientCertificateRequired: false, SslProtocols.Tls12, checkCertificateRevocation: true);
 
-                        using (StreamReader reader = new StreamReader(sslStream, Encoding.UTF8))
+                        PostgreSQL postgre = new PostgreSQL();
+                        while (true)
                         {
-                            string line;
-                            MessageBox.Show("Получение данных от клиента:");
-                            PostgreSQL postgre = new PostgreSQL();
-                            while ((line = reader.ReadLine()) != null)
+                            // Чтение длины сообщения (4 байта)
+                            byte[] lengthBytes = new byte[4];
+                            int bytesRead = sslStream.Read(lengthBytes, 0, lengthBytes.Length);
+                            if (bytesRead == 0) break;
+
+                            int messageLength = IPAddress.NetworkToHostOrder(BitConverter.ToInt32(lengthBytes, 0));
+
+                            // Чтение данных по 42 байта
+                            byte[] buffer = new byte[messageLength];
+                            int totalBytesRead = 0;
+                            while (totalBytesRead < messageLength)
                             {
-                                try
-                                {
-                                    Project project = JsonConvert.DeserializeObject<Project>(line);
-                                    postgre.Migrate(project);
-                                }
-                                catch (JsonException ex)
-                                {
-                                    MessageBox.Show($"Ошибка десериализации: {ex.Message}");
-                                }
+                                int bytesToRead = Math.Min(42, messageLength - totalBytesRead);
+                                bytesRead = sslStream.Read(buffer, totalBytesRead, bytesToRead);
+                                if (bytesRead == 0) break;
+
+                                totalBytesRead += bytesRead;
+                            }
+
+                            // Десериализация сообщения
+                            string json = Encoding.UTF8.GetString(buffer, 0, buffer.Length);
+                            try
+                            {
+                                Library library = JsonConvert.DeserializeObject<Library>(json);
+                                postgre.Migrate(library);
+                                MessageBox.Show($"Получено: {library.AuthorName}");
+                            }
+                            catch (JsonException ex)
+                            {
+                                MessageBox.Show($"Ошибка десериализации: {ex.Message}");
                             }
                         }
-
-                        MessageBox.Show("Соединение закрыто.");
                     }
                 }
             }
             catch (SocketException ex)
             {
-                MessageBox.Show("Ошибка сокета: {0}", ex.Message);
+                MessageBox.Show($"Ошибка сокета: {ex.Message}");
             }
             finally
             {
-                server.Stop();
+                server?.Stop();
             }
         }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -268,7 +284,7 @@ namespace WinFormsApp1
                             app.UseRouting();
                             app.UseEndpoints(endpoints =>
                             {
-                                endpoints.MapGrpcService<MyProjectService>();
+                                endpoints.MapGrpcService<MyLibraryService>();
                             });
                         });
                     })
@@ -285,6 +301,36 @@ namespace WinFormsApp1
         private void button4_Click(object sender, EventArgs e)
         {
             Client.StartSocket();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Client.StartRabbit();
+        }
+
+        private async void button6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Получаем данные из SQLite
+                SQLlite sQLlite = new SQLlite();
+                var projects = sQLlite.ReadDataFromSQLite();
+
+                if (projects == null || projects.Count == 0)
+                {
+                    MessageBox.Show("No projects found in the database.");
+                    return;
+                }
+
+                // Отправляем проекты через gRPC
+                await Client.SendProjectsAsync(projects);
+
+                MessageBox.Show("Projects sent successfully!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
         }
 
     }

@@ -35,6 +35,14 @@ C:\Users\usicc\OneDrive\Рабочий стол\study\tppr2\WinFormsApp1\WinForm
 C:\Users\usicc\OneDrive\Рабочий стол\study\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\net8.0-windows\Npgsql.dll
 C:\Users\usicc\OneDrive\Рабочий стол\study\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
 C:\Users\usicc\OneDrive\Рабочий стол\study\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.sourcelink.json
+C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.csproj.AssemblyReference.cache
+C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.Form1.resources
+C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.csproj.GenerateResource.cache
+C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.AssemblyInfoInputs.cache
+C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.AssemblyInfo.cs
+C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.csproj.CoreCompileInputs.cache
+C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.sourcelink.json
 C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\net8.0-windows\Certificates\server.pfx
 C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\net8.0-windows\WinFormsApp1.exe
 C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\net8.0-windows\WinFormsApp1.deps.json
@@ -85,17 +93,18 @@ C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\n
 C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\net8.0-windows\runtimes\win-x86\native\SQLite.Interop.dll
 C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\net8.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\net8.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.csproj.AssemblyReference.cache
-C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.Form1.resources
-C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.csproj.GenerateResource.cache
-C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.AssemblyInfoInputs.cache
-C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.AssemblyInfo.cs
-C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.csproj.CoreCompileInputs.cache
-C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.sourcelink.json
 C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinForms.E4050A35.Up2Date
 C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.dll
 C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\refint\WinFormsApp1.dll
 C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.pdb
 C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.genruntimeconfig.cache
 C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\ref\WinFormsApp1.dll
+C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\net8.0-windows\Microsoft.EntityFrameworkCore.dll
+C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\net8.0-windows\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\net8.0-windows\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\net8.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\net8.0-windows\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\net8.0-windows\Microsoft.Extensions.Primitives.dll
+C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\net8.0-windows\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\Евгений\Desktop\stud\tppr2\WinFormsApp1\WinFormsApp1\bin\Debug\net8.0-windows\System.Diagnostics.DiagnosticSource.dll

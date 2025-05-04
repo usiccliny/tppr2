@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Npgsql;
 using System;
 using System.Collections.Generic;
@@ -98,126 +99,224 @@ namespace WinFormsApp1
             MessageBox.Show($"Данные успешно экспортированы в {outputPath}");
         }
 
-        public void Migrate(Project project)
+        public void Migrate(Library library)
         {
             using (var pgConnection = new NpgsqlConnection(PostgresConnectionString))
             {
                 pgConnection.Open();
 
+                // Начало транзакции
                 using (var pgTransaction = pgConnection.BeginTransaction())
                 {
-                    using (var employeeCommand = pgConnection.CreateCommand())
-                    using (var teamCommand = pgConnection.CreateCommand())
-                    using (var projectCommand = pgConnection.CreateCommand())
-                    using (var taskCommand = pgConnection.CreateCommand())
+                    try
                     {
-                        // Словари для айдишников
-                        var employeeIds = new Dictionary<string, int>();
-                        var teamIds = new Dictionary<string, int>();
-                        var projectIds = new Dictionary<string, int>();
+                        // Словари для хранения ID
+                        var readerIds = new Dictionary<string, int>();
+                        var bookIds = new Dictionary<string, int>();
+                        var authorIds = new Dictionary<string, int>();
 
-                        // 1. Вставка или получение айди сотрудника
-                        if (!employeeIds.ContainsKey(project.Email))
+                        // 1. Вставка или получение ID читателя
+                        if (!readerIds.ContainsKey(library.ReaderName))
                         {
-                            employeeCommand.CommandText = "INSERT INTO employee (first_name, last_name, email) VALUES (@firstName, @lastName, @Email) ON CONFLICT (email) DO NOTHING RETURNING employee_id";
-                            employeeCommand.Parameters.Clear();
-                            employeeCommand.Parameters.AddWithValue("@firstName", project.FirstName);
-                            employeeCommand.Parameters.AddWithValue("@lastName", project.LastName);
-                            employeeCommand.Parameters.AddWithValue("@Email", project.Email);
+                            using (var readerCommand = pgConnection.CreateCommand())
+                            {
+                                readerCommand.Transaction = pgTransaction;
+                                readerCommand.CommandText = @"
+                            INSERT INTO readers (name) 
+                            VALUES (@name) 
+                            ON CONFLICT (name) DO NOTHING 
+                            RETURNING reader_id";
+                                readerCommand.Parameters.AddWithValue("@name", library.ReaderName);
 
-                            var result = employeeCommand.ExecuteScalar();
-                            int employeeId;
-                            if (result != null)
-                            {
-                                employeeId = (int)result;
+                                var result = readerCommand.ExecuteScalar();
+                                int readerid;
+                                if (result != null)
+                                {
+                                    readerid = (int)result;
+                                }
+                                else
+                                {
+                                    readerCommand.CommandText = "SELECT reader_id FROM readers WHERE name = @name";
+                                    readerid = (int)readerCommand.ExecuteScalar();
+                                }
+                                readerIds[library.ReaderName] = readerid;
                             }
-                            else
-                            {
-                                employeeCommand.CommandText = "SELECT employee_id FROM employee WHERE email = @Email";
-                                employeeId = (int)employeeCommand.ExecuteScalar();
-                            }
-                            employeeIds[project.Email] = employeeId;
                         }
 
-                        int assignedToId = employeeIds[project.Email];
+                        int readerId = readerIds[library.ReaderName];
 
-                        // 2. Вставка или получение айди команды
-                        if (!teamIds.ContainsKey(project.TeamName))
+                        // 2. Вставка или получение ID автора
+                        if (!authorIds.ContainsKey(library.AuthorName))
                         {
-                            teamCommand.CommandText = "INSERT INTO team (team_name, lead_employee_id) VALUES (@teamName, @leadEmployeeId) ON CONFLICT (team_name, lead_employee_id) DO NOTHING RETURNING team_id";
-                            teamCommand.Parameters.Clear();
-                            teamCommand.Parameters.AddWithValue("@teamName", project.TeamName);
-                            teamCommand.Parameters.AddWithValue("@leadEmployeeId", assignedToId);
+                            using (var authorCommand = pgConnection.CreateCommand())
+                            {
+                                authorCommand.Transaction = pgTransaction;
+                                authorCommand.CommandText = @"
+                            INSERT INTO authors (name) 
+                            VALUES (@name) 
+                            ON CONFLICT (name) DO NOTHING 
+                            RETURNING author_id";
+                                authorCommand.Parameters.AddWithValue("@name", library.AuthorName);
 
-                            var result = teamCommand.ExecuteScalar();
-                            int teamId;
-                            if (result != null)
-                            {
-                                teamId = (int)result;
+                                var result = authorCommand.ExecuteScalar();
+                                int authorid;
+                                if (result != null)
+                                {
+                                    authorid = (int)result;
+                                }
+                                else
+                                {
+                                    authorCommand.CommandText = "SELECT author_id FROM authors WHERE name = @name";
+                                    authorid = (int)authorCommand.ExecuteScalar();
+                                }
+                                authorIds[library.AuthorName] = authorid;
                             }
-                            else
-                            {
-                                teamCommand.CommandText = "SELECT team_id FROM team WHERE team_name = @teamName AND lead_employee_id = @leadEmployeeId";
-                                teamId = (int)teamCommand.ExecuteScalar();
-                            }
-                            teamIds[project.TeamName] = teamId;
                         }
 
-                        int team_id = teamIds[project.TeamName];
+                        int authorId = authorIds[library.AuthorName];
 
-                        // 3. Вставка или получение айди проекта
-                        if (!projectIds.ContainsKey(project.ProjectName))
+                        // 3. Вставка или получение ID книги
+                        string bookKey = $"{library.BookTitle}|{library.BookGenre}";
+                        if (!bookIds.ContainsKey(bookKey))
                         {
-                            projectCommand.CommandText = "INSERT INTO project (project_name, start_date, end_date, status) VALUES (@projectName, @startDate, @endDate, @status) ON CONFLICT (project_name, status) DO NOTHING RETURNING project_id";
-                            projectCommand.Parameters.Clear();
-                            projectCommand.Parameters.AddWithValue("@projectName", project.ProjectName);
-                            projectCommand.Parameters.AddWithValue("@startDate", project.ProjectStartDate);
-                            projectCommand.Parameters.AddWithValue("@endDate", project.ProjectEndDate);
-                            projectCommand.Parameters.AddWithValue("@status", project.ProjectStatus);
-
-
-                            var result = projectCommand.ExecuteScalar();
-                            int projectId;
-                            if (result != null)
+                            using (var bookCommand = pgConnection.CreateCommand())
                             {
-                                projectId = (int)result;
+                                bookCommand.Transaction = pgTransaction;
+                                bookCommand.CommandText = @"
+                            INSERT INTO books (title, genre) 
+                            VALUES (@title, @genre) 
+                            ON CONFLICT (title, genre) DO NOTHING 
+                            RETURNING book_id";
+                                bookCommand.Parameters.AddWithValue("@title", library.BookTitle);
+                                bookCommand.Parameters.AddWithValue("@genre", library.BookGenre);
+
+                                var result = bookCommand.ExecuteScalar();
+                                int bookid;
+                                if (result != null)
+                                {
+                                    bookid = (int)result;
+                                }
+                                else
+                                {
+                                    bookCommand.CommandText = "SELECT book_id FROM books WHERE title = @title AND genre = @genre";
+                                    bookid = (int)bookCommand.ExecuteScalar();
+                                }
+                                bookIds[bookKey] = bookid;
+
+                                // Связь книги с автором
+                                using (var bookAuthorCommand = pgConnection.CreateCommand())
+                                {
+                                    bookAuthorCommand.Transaction = pgTransaction;
+                                    bookAuthorCommand.CommandText = @"
+                                INSERT INTO books_authors (book_id, author_id) 
+                                VALUES (@book_id, @author_id) 
+                                ON CONFLICT (book_id, author_id) DO NOTHING";
+                                    bookAuthorCommand.Parameters.AddWithValue("@book_id", bookid);
+                                    bookAuthorCommand.Parameters.AddWithValue("@author_id", authorId);
+
+                                    bookAuthorCommand.ExecuteNonQuery();
+                                }
                             }
-                            else
-                            {
-                                projectCommand.CommandText = "SELECT project_id FROM project WHERE project_name = @projectName AND status = @status";
-                                projectId = (int)projectCommand.ExecuteScalar();
-                            }
-                            projectIds[project.ProjectName] = projectId;
                         }
 
-                        int project_id = projectIds[project.ProjectName];
+                        int bookId = bookIds[bookKey];
 
-                        // 4. Вставка задачи
-                        taskCommand.CommandText = "INSERT INTO task (task_name, assigned_to, project_id, status, due_date) VALUES (@taskName, @assignedTo, @projectId, @status, @dueDate) ON CONFLICT (task_name, assigned_to, project_id, status) DO NOTHING";
-                        taskCommand.Parameters.Clear();
-                        taskCommand.Parameters.AddWithValue("@taskName", project.TaskName);
-                        taskCommand.Parameters.AddWithValue("@assignedTo", assignedToId);
-                        taskCommand.Parameters.AddWithValue("@projectId", project_id);
-                        taskCommand.Parameters.AddWithValue("@status", project.TaskStatus);
-                        taskCommand.Parameters.AddWithValue("@dueDate", project.TaskDueDate);
-
-                        taskCommand.ExecuteNonQuery();
-
-                        // связываем проект и команду
-                        using (var projectTeamCommand = pgConnection.CreateCommand())
+                        // 4. Вставка записи о выдаче
+                        using (var borrowCommand = pgConnection.CreateCommand())
                         {
-                            projectTeamCommand.CommandText = "INSERT INTO project_team (project_id, team_id) VALUES (@projectId, @teamId) ON CONFLICT (project_id, team_id) DO NOTHING";
-                            projectTeamCommand.Parameters.Clear();
-                            projectTeamCommand.Parameters.AddWithValue("@projectId", project_id);
-                            projectTeamCommand.Parameters.AddWithValue("@teamId", team_id);
-                            projectTeamCommand.ExecuteNonQuery();
+                            borrowCommand.Transaction = pgTransaction;
+                            borrowCommand.CommandText = @"
+                        INSERT INTO borrows (book_id, reader_id, borrow_date, return_date) 
+                        VALUES (@book_id, @reader_id, @borrow_date, @return_date) 
+                        ON CONFLICT (book_id, reader_id, borrow_date) DO NOTHING";
+                            borrowCommand.Parameters.AddWithValue("@book_id", bookId);
+                            borrowCommand.Parameters.AddWithValue("@reader_id", readerId);
+                            borrowCommand.Parameters.AddWithValue("@borrow_date", library.BorrowDate.ToDateTime(new TimeOnly(0, 0)));
+                            borrowCommand.Parameters.AddWithValue("@return_date", library.ReturnDate?.ToDateTime(new TimeOnly(0, 0)));
+
+                            borrowCommand.ExecuteNonQuery();
                         }
 
+                        // Фиксация транзакции
+                        pgTransaction.Commit();
                     }
-
-                    pgTransaction.Commit();
+                    catch (Exception ex)
+                    {
+                        // Откат транзакции в случае ошибки
+                        pgTransaction.Rollback();
+                        throw new Exception("Ошибка при миграции данных.", ex);
+                    }
                 }
             }
+        }
+
+        public async void TransferData(Library library)
+        {
+            using var libraryContext = new LibraryContext();
+
+
+            var borrow = new Borrow()
+            {
+                BorrowDate = library.BorrowDate,
+                ReturnDate = library.ReturnDate,
+            };
+
+
+            var reader = await libraryContext.Readers.FirstOrDefaultAsync(r => r.Name == library.ReaderName);
+            borrow.Reader = reader ?? new Reader() { Name = library.ReaderName };
+
+            libraryContext.Readers.Add(new Reader());
+
+            var book = await libraryContext.Books
+                .Include(b => b.Authors)
+                .FirstOrDefaultAsync(b => b.Title == library.BookTitle && b.Genre == library.BookGenre);
+
+            if (book != null)
+            {
+                borrow.Book = book;
+
+                var author = book.Authors.FirstOrDefault(a => a.Name == library.AuthorName);
+                if (author == null)
+                {
+
+                    author = await libraryContext.Authors.FirstOrDefaultAsync(a => a.Name == library.AuthorName);
+                    if (author == null)
+                    {
+
+                        author = new Author() { Name = library.AuthorName };
+                        await libraryContext.Authors.AddAsync(author);
+                    }
+
+                    book.Authors.Add(author);
+                }
+            }
+            else
+            {
+                var author = await libraryContext.Authors.FirstOrDefaultAsync(a => a.Name == library.AuthorName);
+                if (author == null)
+                {
+                    author = new Author() { Name = library.AuthorName };
+                    await libraryContext.Authors.AddAsync(author);
+                }
+
+                borrow.Book = new Book()
+                {
+                    Title = library.BookTitle,
+                    Genre = library.BookGenre,
+                    Authors = new List<Author> { author }
+                };
+            }
+            var existingBorrow = await libraryContext.Borrows.FirstOrDefaultAsync(
+                a => a.BookId == borrow.Book.BookId &&
+                a.ReaderId == borrow.Reader.ReaderId &&
+                a.BorrowDate == borrow.BorrowDate &&
+                a.ReturnDate == borrow.ReturnDate);
+            if (existingBorrow == null)
+                libraryContext.Borrows.Add(borrow);
+
+            await libraryContext.SaveChangesAsync();
+
+
         }
 
         public void TruncateTables()
@@ -228,7 +327,12 @@ namespace WinFormsApp1
             "public.project",
             "public.project_team",
             "public.task",
-            "public.team"
+            "public.team",
+            "public.authors",
+            "public.books",
+            "public.books_authors",
+            "public.readers",
+            "public.borrows"
             };
 
             try

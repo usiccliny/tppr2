@@ -13,7 +13,7 @@ namespace WinFormsApp1
 {
     internal class Client
     {
-        string deviceName = "DESKTOP-B0RNFQA";
+        string deviceName = "DESKTOP-Q86DH0S";
         int port = 13000;
 
         public static string GetIPv4AddressByNetworkName(string networkName = "Беспроводная сеть")
@@ -65,8 +65,9 @@ namespace WinFormsApp1
                 using (SslStream sslStream = new SslStream(client.GetStream(), false, new RemoteCertificateValidationCallback(ValidateServerCertificate), null))
                 {
                     X509Certificate2 caCertificate = new X509Certificate2("C:\\Certs\\RootCA.cer");
-
+                    
                     sslStream.AuthenticateAsClient("localhost");
+
 
                     SQLlite sQLlite = new SQLlite();
                     var projects = sQLlite.ReadDataFromSQLite();
@@ -77,7 +78,20 @@ namespace WinFormsApp1
                         foreach (var project in projects)
                         {
                             string json = JsonConvert.SerializeObject(project);
-                            writer.WriteLine(json);
+                            byte[] data = Encoding.UTF8.GetBytes(json);
+
+                            // Отправка длины сообщения (4 байта)
+                            byte[] lengthBytes = BitConverter.GetBytes(IPAddress.HostToNetworkOrder(data.Length));
+                            sslStream.Write(lengthBytes, 0, lengthBytes.Length);
+
+                            // Разбиение данных на фрагменты по 42 байта
+                            int chunkSize = 42;
+                            for (int i = 0; i < data.Length; i += chunkSize)
+                            {
+                                int bytesToSend = Math.Min(chunkSize, data.Length - i);
+                                sslStream.Write(data, i, bytesToSend);
+                            }
+
                             MessageBox.Show($"Отправлен проект: {project.ProjectName}");
                         }
                     }
@@ -104,12 +118,16 @@ namespace WinFormsApp1
             var sslOptions = new SslOption
             {
                 Enabled = true,
-                ServerName = "localhost"
+                ServerName = "localhost",
+                AcceptablePolicyErrors = System.Net.Security.SslPolicyErrors.RemoteCertificateNotAvailable |
+                                          System.Net.Security.SslPolicyErrors.RemoteCertificateChainErrors |
+                                          System.Net.Security.SslPolicyErrors.RemoteCertificateNameMismatch
             };
+
             var factory = new ConnectionFactory()
             {
                 HostName = rabbitmqHost,
-                Port = 5671,
+                Port = 5671, // Порт для SSL
                 UserName = "user1",
                 Password = "user1",
                 Ssl = sslOptions
@@ -209,7 +227,7 @@ namespace WinFormsApp1
             if (sslPolicyErrors == SslPolicyErrors.None)
                 return true;
 
-            Console.WriteLine($"Ошибка проверки сертификата: {sslPolicyErrors}");
+            MessageBox.Show($"Ошибка проверки сертификата: {sslPolicyErrors}");
             return false;
         }
     }
