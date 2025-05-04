@@ -197,23 +197,40 @@ namespace WinFormsApp1
                         PostgreSQL postgre = new PostgreSQL();
                         while (true)
                         {
-                            // Чтение длины сообщения (4 байта)
+                            // Чтение длины сообщения (ровно 4 байта)
                             byte[] lengthBytes = new byte[4];
-                            int bytesRead = sslStream.Read(lengthBytes, 0, lengthBytes.Length);
-                            if (bytesRead == 0) break;
+                            int totalBytesRead = 0;
+
+                            while (totalBytesRead < lengthBytes.Length)
+                            {
+                                int bytesRead = sslStream.Read(lengthBytes, totalBytesRead, lengthBytes.Length - totalBytesRead);
+                                totalBytesRead += bytesRead;
+                            }
 
                             int messageLength = IPAddress.NetworkToHostOrder(BitConverter.ToInt32(lengthBytes, 0));
 
-                            // Чтение данных по 42 байта
-                            byte[] buffer = new byte[messageLength];
-                            int totalBytesRead = 0;
-                            while (totalBytesRead < messageLength)
+                            if (messageLength == 0)
                             {
-                                int bytesToRead = Math.Min(42, messageLength - totalBytesRead);
-                                bytesRead = sslStream.Read(buffer, totalBytesRead, bytesToRead);
-                                if (bytesRead == 0) break;
+                                MessageBox.Show("Получено сообщение о завершении передачи.");
+                                break;
+                            }
 
-                                totalBytesRead += bytesRead;
+                            // Проверка на корректность длины сообщения
+                            if (messageLength <= 0 || messageLength > int.MaxValue)
+                            {
+                                throw new InvalidOperationException("Некорректная длина сообщения.");
+                            }
+
+                            // Чтение данных по частям (по 42 байта)
+                            byte[] buffer = new byte[messageLength];
+                            int totalDataBytesRead = 0;
+
+                            while (totalDataBytesRead < messageLength)
+                            {
+                                int bytesToRead = Math.Min(42, messageLength - totalDataBytesRead);
+                                int bytesRead = sslStream.Read(buffer, totalDataBytesRead, bytesToRead);
+
+                                totalDataBytesRead += bytesRead;
                             }
 
                             // Десериализация сообщения
@@ -221,7 +238,7 @@ namespace WinFormsApp1
                             try
                             {
                                 Library library = JsonConvert.DeserializeObject<Library>(json);
-                                postgre.Migrate(library);
+                                postgre.TransferData(library);
                                 MessageBox.Show($"Получено: {library.AuthorName}");
                             }
                             catch (JsonException ex)

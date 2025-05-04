@@ -13,7 +13,7 @@ namespace WinFormsApp1
 {
     internal class Client
     {
-        string deviceName = "DESKTOP-Q86DH0S";
+        string deviceName = "DESKTOP-B0RNFQA";
         int port = 13000;
 
         public static string GetIPv4AddressByNetworkName(string networkName = "Беспроводная сеть")
@@ -65,36 +65,43 @@ namespace WinFormsApp1
                 using (SslStream sslStream = new SslStream(client.GetStream(), false, new RemoteCertificateValidationCallback(ValidateServerCertificate), null))
                 {
                     X509Certificate2 caCertificate = new X509Certificate2("C:\\Certs\\RootCA.cer");
-                    
+
                     sslStream.AuthenticateAsClient("localhost");
 
 
                     SQLlite sQLlite = new SQLlite();
                     var projects = sQLlite.ReadDataFromSQLite();
 
-                    using (StreamWriter writer = new StreamWriter(sslStream, Encoding.UTF8) { AutoFlush = true })
+                    MessageBox.Show("Отправка данных...");
+                    foreach (var project in projects)
                     {
-                        MessageBox.Show("Отправка данных...");
-                        foreach (var project in projects)
+                        string json = JsonConvert.SerializeObject(project);
+                        byte[] data = Encoding.UTF8.GetBytes(json);
+
+                        // Отправка длины сообщения (4 байта)
+                        byte[] lengthBytes = BitConverter.GetBytes(data.Length);
+                        if (BitConverter.IsLittleEndian)
                         {
-                            string json = JsonConvert.SerializeObject(project);
-                            byte[] data = Encoding.UTF8.GetBytes(json);
-
-                            // Отправка длины сообщения (4 байта)
-                            byte[] lengthBytes = BitConverter.GetBytes(IPAddress.HostToNetworkOrder(data.Length));
-                            sslStream.Write(lengthBytes, 0, lengthBytes.Length);
-
-                            // Разбиение данных на фрагменты по 42 байта
-                            int chunkSize = 42;
-                            for (int i = 0; i < data.Length; i += chunkSize)
-                            {
-                                int bytesToSend = Math.Min(chunkSize, data.Length - i);
-                                sslStream.Write(data, i, bytesToSend);
-                            }
-
-                            MessageBox.Show($"Отправлен проект: {project.ProjectName}");
+                            Array.Reverse(lengthBytes);
                         }
+                        sslStream.Write(lengthBytes, 0, lengthBytes.Length);
+
+                        // Разбиение данных на фрагменты по 42 байта
+                        int chunkSize = 42;
+                        for (int i = 0; i < data.Length; i += chunkSize)
+                        {
+                            int bytesToSend = Math.Min(chunkSize, data.Length - i);
+                            sslStream.Write(data, i, bytesToSend);
+                        }
+
+                        MessageBox.Show($"Отправлен проект: {project.ProjectName}");
                     }
+                    byte[] endMessageLength = BitConverter.GetBytes(0);
+                    if (BitConverter.IsLittleEndian)
+                    {
+                        Array.Reverse(endMessageLength);
+                    }
+                    sslStream.Write(endMessageLength, 0, endMessageLength.Length);
                     MessageBox.Show("Данные отправлены.");
                 }
             }
